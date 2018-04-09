@@ -1,0 +1,8 @@
+Host github.com-tuanh
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_tuanh
+Host github.com-nguyenthanhluan6c
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_nguyenthanhluan6c
