@@ -1,8 +1,9 @@
 cd_to () {
-  cd ~/ruby/social-media-data-display-tool-for-beauty/
-  exec zsh
-
   case $1 in
+    "workspace")
+      cd ~/bin/
+      exec zsh
+      ;;
     "tdse")
       cd ~/ruby/social-media-data-display-tool-for-beauty/
       exec zsh
@@ -32,6 +33,7 @@ cd_to () {
 projects() {
   echo "List all projects"
   readonly projects=(
+    'workspace|~/bin/'
     'tdse|~/ruby/social-media-data-display-tool-for-beauty/'
     'dd|~/ruby/CR_RegulationCheck/'
     'spice|~/ruby/spicebox-inc/'

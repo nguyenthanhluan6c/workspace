@@ -7,13 +7,20 @@ git_rebase(){
   git rebase $1 && exit_success || exit_failure;
 }
 
+git_push_6c(){
+  git status
+  git add -A
+  git commit --amend --no-edit
+  GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_nguyenthanhluan6c" git push origin $1 -f
+}
+
 git_push(){
   current_branch_name=$(current_branch)
   echo $current_branch_name
 
   if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
     echo "Don't push $current_branch_name"
-    # exit 1
+    return 1
   fi
 
   git status
@@ -39,7 +46,7 @@ git_push_am(){
 
   if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
     echo "Don't push $current_branch_name"
-    exit
+    return 1
   fi
 
   git status
