@@ -8,6 +8,11 @@ git_rebase(){
 }
 
 git_push_6c(){
+  if [ $1 = "master" ] || [ $1 = "develop" ]; then
+    echo "Don't push $current_branch_name"
+    return 1
+  fi
+
   git status
   git add -A
   git commit --amend --no-edit
