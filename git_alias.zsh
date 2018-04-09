@@ -11,7 +11,7 @@ git_push_6c(){
   # git remote add origin git@github.com-nguyenthanhluan6c:nguyenthanhluanFramgia/workspace.git
 
   if [ $1 = "master" ] || [ $1 = "develop" ]; then
-    echo "Don't push $current_branch_name"
+    print_error "Don't push $current_branch_name"
     return 1
   fi
 
@@ -22,13 +22,15 @@ git_push_6c(){
 }
 
 git_push(){
-  local repo_url repo_name repo_host browser_url last_commit
+  local repo_url repo_name repo_host browser_url last_commit commit_message
+
+  commit_message=$1
 
   current_branch_name=$(current_branch)
   echo $current_branch_name
 
   if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
-    echo "Don't push $current_branch_name"
+    print_error "Don't push $current_branch_name"
     exit_failure
     return 1
   fi
@@ -37,27 +39,36 @@ git_push(){
   git add -A
 
   last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
+  print_info $last_commit
 
-  if [[ $last_commit=~"merge(.+)" ]]; then
+  if [ $last_commit -regex-match "(.+)Merge pull request(.+)" ]; then
+    echo $match
+    local tmp_message
+
+    if [ -n $commit_message ]; then
+      tmp_message=$commit_message
+    else
+      tmp_message=$current_branch_name
+    fi
+
+    git commit -m $tmp_message
+    print_info "Commited with message:" $tmp_message
+
+    git push origin $current_branch_name;
+  else
     git commit --amend --no-edit
     print_info "Commited amend, and push" $current_branch_name
 
     git push origin $current_branch_name -f;
-  else
-    git commit -m $current_branch_name
-    print_info "Commited with message:" $current_branch_name
-
-    git push origin $current_branch_name;
   fi
 
-
   repo_url=$(git config --get remote.origin.url)
-  if [[ $repo_url=~"(.+)@(.+):(.+)" ]]; then
+  if [ $repo_url -regex-match "(.+)@(.+):(.+)" ]; then
     repo_host=$match[2]
     repo_name=$match[3]
     browser_url="https://github.com/${repo_name}"
   else
-    echo "no match"
+    print_error "No match"
     exit_failure
     return 1;
   fi
@@ -76,7 +87,7 @@ git_push_am(){
   echo $current_branch_name
 
   if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
-    echo "Don't push $current_branch_name"
+    print_error "Don't push $current_branch_name"
     exit_failure
     return 1
   fi
@@ -86,11 +97,9 @@ git_push_am(){
   git commit --amend --no-edit
   git push origin $current_branch_name -f;
 
-  echo "Commited amend, and push" $current_branch_name
+  print_info "Commited amend, and push" $current_branch_name
   exit_success
 }
-
-
 
 # Black        0;30     Dark Gray     1;30
 # Red          0;31     Light Red     1;31
@@ -114,5 +123,10 @@ function exit_success() {
 
 print_info(){
   local GREEN='\033[0;32m' NC='\033[0m'
-  printf "${GREEN} %-30s ${NC} %s\n" $1 $2
+  printf "${GREEN}%-50s ${NC} %s\n" $1 $2
+}
+
+print_error(){
+  local RED='\033[0;31m' NC='\033[0m'
+  printf "${RED}%-50s ${NC} %s\n" $1 $2
 }
