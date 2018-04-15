@@ -1,3 +1,5 @@
+zmodload zsh/regex
+
 git_rebase(){
   last_branch=$(current_branch);
 
@@ -27,7 +29,7 @@ git_push(){
   commit_message=$1
 
   current_branch_name=$(current_branch)
-  echo $current_branch_name
+  print_info $current_branch_name
 
   if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
     print_error "Don't push $current_branch_name"
@@ -45,9 +47,11 @@ git_push(){
     echo $match
     local tmp_message
 
-    if [ -n $commit_message ]; then
+    if [[ $commit_message = *[!\ ]* ]]; then
+      print_info "User branch:" $current_branch_name
       tmp_message=$commit_message
     else
+      print_info "Blank:" $1
       tmp_message=$current_branch_name
     fi
 
@@ -63,10 +67,16 @@ git_push(){
   fi
 
   repo_url=$(git config --get remote.origin.url)
+
   if [ $repo_url -regex-match "(.+)@(.+):(.+)" ]; then
     repo_host=$match[2]
     repo_name=$match[3]
-    browser_url="https://github.com/${repo_name}"
+
+    if [ $1 -regex-match "(.+)@github.com(.+)" ]; then
+      browser_url="https://github.com/${repo_name}"
+    else
+      browser_url="https://${repo_host}/${repo_name}"
+    fi
   else
     print_error "No match"
     exit_failure
@@ -109,6 +119,35 @@ git_push_am(){
 # Purple       0;35     Light Purple  1;35
 # Cyan         0;36     Light Cyan    1;36
 # Light Gray   0;37     White         1;37
+
+
+function blank_string() {
+  if [[ $1 = *[!\ ]* ]]; then
+    echo "String:" $1
+  else
+    echo "Blank:" $1
+  fi
+}
+
+function test_repo() {
+  if [ $1 -regex-match "(.+)@(.+):(.+)" ]; then
+    repo_host=$match[2]
+    repo_name=$match[3]
+
+    if [ $1 -regex-match "(.+)@github.com(.+)" ]; then
+      browser_url="https://github.com/${repo_name}"
+    else
+      browser_url="https://${repo_host}/${repo_name}"
+    fi
+  else
+    print_error "No match"
+    exit_failure
+    return 1;
+  fi
+
+  echo $browser_url
+}
+
 
 function exit_failure() {
   RED='\033[0;31m'
