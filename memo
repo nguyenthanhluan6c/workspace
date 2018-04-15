@@ -7,3 +7,16 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-el
 https://redmine.ruby-dev.jp/projects/think-spicebox/wiki/THINK%E7%92%B0%E5%A2%83%E6%A7%8B%E7%AF%89
 sudo chmod go+rx /run/containers/android_XXXXX
 curl -XGET 'http://localhost:9200/_nodes?pretty'
+
+
+List all indexs
+
+curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+
+
+List data of index
+curl -XGET 'localhost:9200/es_demo_people/_search?q=*&pretty'
+curl -XGET 'localhost:9200/es_demo_people/_stats?pretty'
+
+First index
+curl -XGET 'localhost:9200/es_demo_people/person/1?pretty'
