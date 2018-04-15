@@ -9,18 +9,45 @@ git_rebase(){
   git rebase $1 && exit_success || exit_failure;
 }
 
-git_push_6c(){
-  # git remote add origin git@github.com-nguyenthanhluan6c:nguyenthanhluanFramgia/workspace.git
+git_cm(){
+  local repo_url repo_name repo_host browser_url last_commit commit_message
 
-  if [ $1 = "master" ] || [ $1 = "develop" ]; then
-    print_error "Don't push $current_branch_name"
-    return 1
+  commit_message=$1
+
+  current_branch_name=$(current_branch)
+  print_info $current_branch_name
+
+  if [ $current_branch_name = "master" ] || [ $current_branch_name = "develop" ]; then
+    print_error "CARE FULL, YOU ARE COMMITTING ON BRANCH $current_branch_name"
   fi
 
   git status
   git add -A
-  git commit --amend --no-edit
-  GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_nguyenthanhluan6c" git push origin $1 -f
+
+  last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
+  print_info $last_commit
+
+  if [ $last_commit -regex-match "(.+)Merge pull request(.+)" ]; then
+    echo $match
+    local tmp_message
+
+    if [[ $commit_message = *[!\ ]* ]]; then
+      print_info "User branch:" $current_branch_name
+      tmp_message=$commit_message
+    else
+      print_info "Blank:" $1
+      tmp_message=$current_branch_name
+    fi
+
+    git commit -m $tmp_message
+    print_info "Commited with message:" $tmp_message
+
+  else
+    git commit --amend --no-edit
+    print_info "Commited amend, and push" $current_branch_name
+
+  fi
+  exit_success
 }
 
 git_push(){
