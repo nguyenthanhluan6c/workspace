@@ -1,6 +1,5 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=~/.npm-global/bin:$PATH
 # Path to your oh-my-zsh installation.
   export ZSH=/home/ubuntu/.oh-my-zsh
 
@@ -61,7 +60,11 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git rails bundler zsh-syntax-highlighting zsh-autosuggestions
+  git
+  rails
+  bundler
+  zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -94,8 +97,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# source /home/ubuntu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -109,3 +110,5 @@ autoload -Uz compinit && compinit -i
 export PATH="$PATH:$HOME/usr/share/elasticsearch/bin"
 
 source ~/bin/profile.zsh
+# source /home/ubuntu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)

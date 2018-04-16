@@ -1,4 +1,4 @@
-zmodload zsh/regex
+zmodload -i zsh/regex
 
 git_rebase(){
   last_branch=$(current_branch);
@@ -70,7 +70,7 @@ git_push(){
   last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
   print_info $last_commit
 
-  if [ $last_commit -regex-match "(.+)Merge pull request(.+)" ]; then
+  if [[ $last_commit -regex-match "(.+)Merge pull request(.+)" ]]; then
     echo $match
     local tmp_message
 
@@ -95,11 +95,11 @@ git_push(){
 
   repo_url=$(git config --get remote.origin.url)
 
-  if [ $repo_url -regex-match "(.+)@(.+):(.+)" ]; then
+  if [[ $repo_url -regex-match "(.+)@(.+):(.+)" ]]; then
     repo_host=$match[2]
     repo_name=$match[3]
 
-    if [ $1 -regex-match "(.+)@github.com(.+)" ]; then
+    if [[ $repo_host -regex-match "(.*)github.com(.*)" ]]; then
       browser_url="https://github.com/${repo_name}"
     else
       browser_url="https://${repo_host}/${repo_name}"
@@ -161,7 +161,7 @@ function test_repo() {
     repo_host=$match[2]
     repo_name=$match[3]
 
-    if [ $1 -regex-match "(.+)@github.com(.+)" ]; then
+    if [ $1 -regex-match "(.*)github.com(.*)" ]; then
       browser_url="https://github.com/${repo_name}"
     else
       browser_url="https://${repo_host}/${repo_name}"
