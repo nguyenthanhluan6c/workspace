@@ -4,6 +4,10 @@ cd_to () {
       cd ~/bin/
       exec zsh
       ;;
+    "ticket")
+      cd ~/ruby/xflag-ticket/
+      exec zsh
+      ;;
     "tdse")
       cd ~/ruby/social-media-data-display-tool-for-beauty/
       exec zsh
@@ -35,6 +39,7 @@ projects() {
   readonly projects=(
     'workspace|~/bin/'
     'tdse|~/ruby/social-media-data-display-tool-for-beauty/'
+    'ticket|~/ruby/xflag-ticket/'
     'dd|~/ruby/CR_RegulationCheck/'
     'spice|~/ruby/spicebox-inc/'
     'tiny|~/ruby/my-tinycards/'
