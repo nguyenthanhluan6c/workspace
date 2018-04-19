@@ -14,3 +14,4 @@ source ~/bin/git_alias.zsh
 export PATH=~/.npm-global/bin:$PATH
 
 eval $(thefuck --alias)
+eval "$(direnv hook zsh)"
