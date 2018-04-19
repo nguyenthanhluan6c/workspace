@@ -4,6 +4,7 @@
 # export PATH=$PATH:~/bin
 # source ~/bin/profile.zsh
 
+source ~/bin/.env
 source ~/bin/utils.zsh
 source ~/bin/cd_to.zsh
 source ~/bin/git_alias.zsh
