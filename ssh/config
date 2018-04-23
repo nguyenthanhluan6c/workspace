@@ -1,8 +1,20 @@
-Host github.com-tuanh
+Host xflag-demo2
+  HostName ticket-xflag-2.8demo.net
+  User nadia
+  Port 22
+  IdentityFile ~/.ssh/id_rsa_n_luan
+
+Host github.com-n_luan
   HostName github.com
   User git
-  IdentityFile ~/.ssh/id_rsa_tuanh
+  IdentityFile ~/.ssh/id_rsa_n_luan
+
 Host github.com-nguyenthanhluan6c
   HostName github.com
   User git
   IdentityFile ~/.ssh/id_rsa_nguyenthanhluan6c
+
+Host github.com-tuanh
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_tuanh
