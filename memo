@@ -20,3 +20,8 @@ curl -XGET 'localhost:9200/es_demo_people/_stats?pretty'
 
 First index
 curl -XGET 'localhost:9200/es_demo_people/person/1?pretty'
+
+#MYSQL
+#current socket
+
+mysql_config --socket
