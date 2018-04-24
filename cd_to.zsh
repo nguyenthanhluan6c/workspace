@@ -18,6 +18,10 @@ cd_to () {
       ;;
     "spice")
       cd ~/ruby/spicebox-inc/
+      exec zsh
+      ;;
+    "mon")
+      cd ~/ruby/monpass/
   	  exec zsh
       ;;
     "tiny")
@@ -42,6 +46,7 @@ projects() {
     'ticket|~/ruby/xflag-ticket/'
     'dd|~/ruby/CR_RegulationCheck/'
     'spice|~/ruby/spicebox-inc/'
+    'mon|~/ruby/monpass/'
     'tiny|~/ruby/my-tinycards/'
     'tiny_front|~/ruby/my-tinycards/angular2/'
     )
