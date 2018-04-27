@@ -4,6 +4,12 @@ Host xflag-demo2
   Port 22
   IdentityFile ~/.ssh/id_rsa_n_luan
 
+Host monpass-demo
+  HostName monpass-special.8demo.net
+  User webadmin
+  Port 22
+  IdentityFile ~/.ssh/id_rsa_n_luan
+
 Host github.com-n_luan
   HostName github.com
   User git

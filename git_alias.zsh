@@ -9,6 +9,16 @@ git_rebase(){
   git rebase $1 && exit_success || exit_failure;
 }
 
+git_pull(){
+  last_branch=$(current_branch);
+
+  git checkout master &&
+  git pull origin master;
+
+  git checkout develop &&
+  git pull origin develop && exit_success || exit_failure;
+}
+
 git_cm(){
   local repo_url repo_name repo_host browser_url last_commit commit_message
 

@@ -4,6 +4,10 @@ cd_to () {
       cd ~/bin/
       exec zsh
       ;;
+    "shi")
+      cd ~/ruby/shigoto/
+      exec zsh
+      ;;
     "ticket")
       cd ~/ruby/xflag-ticket/
       exec zsh
@@ -42,6 +46,7 @@ projects() {
   echo "List all projects"
   readonly projects=(
     'workspace|~/bin/'
+    'shi|/ruby/shigoto/'
     'tdse|~/ruby/social-media-data-display-tool-for-beauty/'
     'ticket|~/ruby/xflag-ticket/'
     'dd|~/ruby/CR_RegulationCheck/'
