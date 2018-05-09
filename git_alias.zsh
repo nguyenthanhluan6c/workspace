@@ -19,6 +19,13 @@ git_pull(){
   git pull origin develop && exit_success || exit_failure;
 }
 
+git_fetch(){
+  last_branch=$(current_branch);
+
+  git fetch origin && git fetch origin --tags &&
+  git reset --hard $last_branch && exit_success || exit_failure;
+}
+
 git_cm(){
   local repo_url repo_name repo_host browser_url last_commit commit_message
 
