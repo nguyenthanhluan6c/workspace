@@ -4,7 +4,7 @@ git_rebase(){
   last_branch=$(current_branch);
 
   git checkout $1 &&
-  git pull origin $1 &&
+  git pull upstream $1 &&
   git checkout $last_branch &&
   git rebase $1 && exit_success || exit_failure;
 }
@@ -13,10 +13,10 @@ git_pull(){
   last_branch=$(current_branch);
 
   git checkout master &&
-  git pull origin master;
+  git pull upstream master;
 
   git checkout develop &&
-  git pull origin develop && exit_success || exit_failure;
+  git pull upstream develop && exit_success || exit_failure;
 }
 
 git_fetch(){
@@ -38,13 +38,15 @@ git_cm(){
     print_error "CARE FULL, YOU ARE COMMITTING ON BRANCH $current_branch_name"
   fi
 
+  rubocop -a
+
   git status
   git add -A
 
   last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
   print_info $last_commit
 
-  if [ $last_commit -regex-match "(.+)Merge pull request(.+)" ]; then
+  if [[ $last_commit -regex-match "(.+)Merge pull request(.+)" ]]; then
     echo $match
     local tmp_message
 
@@ -61,7 +63,7 @@ git_cm(){
 
   else
     git commit --amend --no-edit
-    print_info "Commited amend, and push" $current_branch_name
+    print_info "Commited amend" $current_branch_name
 
   fi
   exit_success
@@ -80,6 +82,8 @@ git_push(){
     exit_failure
     return 1
   fi
+
+  rubocop -a
 
   git status
   git add -A
