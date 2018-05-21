@@ -29,3 +29,12 @@ curl -XGET 'localhost:9200/es_demo_people/person/1?pretty'
 #current socket
 
 mysql_config --socket
+
+
+#Disable background service
+
+sudo systemctl disable elasticsearch.service
+sudo systemctl disable mongod.service
+sudo systemctl disable docker.service
+
+sudo teamviewer daemon disable
