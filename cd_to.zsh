@@ -8,6 +8,11 @@ cd_to () {
       cd ~/ruby/shigoto/
       exec zsh
       ;;
+
+    "fl_hello")
+      cd ~/ruby/flutter/hello_world
+      exec zsh
+      ;;
     "ticket")
       cd ~/ruby/xflag-ticket/
       exec zsh
@@ -36,6 +41,14 @@ cd_to () {
       cd ~/ruby/my-tinycards/angular2/
       exec zsh
       ;;
+    "ag")
+      cd ~/ruby/agri-navi-rails/
+      exec zsh
+      ;;
+    "gaku")
+      cd ~/ruby/mynavi-cms-develop/
+      exec zsh
+      ;;
     *)
       echo "Not found project, please add in bin/cd_to"
       ;;
@@ -47,6 +60,7 @@ projects() {
   readonly projects=(
     'workspace|~/bin/'
     'shi|/ruby/shigoto/'
+    'fl_hello|/ruby/flutter/hello_world/'
     'tdse|~/ruby/social-media-data-display-tool-for-beauty/'
     'ticket|~/ruby/xflag-ticket/'
     'dd|~/ruby/CR_RegulationCheck/'
@@ -54,6 +68,8 @@ projects() {
     'mon|~/ruby/monpass/'
     'tiny|~/ruby/my-tinycards/'
     'tiny_front|~/ruby/my-tinycards/angular2/'
+    'ag|~/ruby/agri-navi-rails/'
+    'gaku|~/ruby/mynavi-cms-develop/'
     )
 
   local project path

@@ -9,17 +9,19 @@ source ~/bin/utils.zsh
 source ~/bin/cd_to.zsh
 source ~/bin/git_alias.zsh
 
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 # Fixing-npm-permissions
 # mkdir ~/.npm-global
 # npm config set prefix '~/.npm-global'
 export PATH=~/.npm-global/bin:$PATH
+export PATH=~/development/flutter/bin:$PATH
 
 fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 
 eval $(thefuck --alias)
-eval "$(direnv hook zsh)"
+# eval "$(direnv hook zsh)"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
