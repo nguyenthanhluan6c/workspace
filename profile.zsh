@@ -8,6 +8,7 @@ source ~/bin/.env
 source ~/bin/utils.zsh
 source ~/bin/cd_to.zsh
 source ~/bin/git_alias.zsh
+source ~/bin/mysql.zsh
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 # Fixing-npm-permissions

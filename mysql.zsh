@@ -1,0 +1,3 @@
+mysql_open(){
+  mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME
+}
