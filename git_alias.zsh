@@ -20,10 +20,20 @@ git_pull(){
 }
 
 git_fetch(){
+  reset_branch=$1;
   last_branch=$(current_branch);
+  now=$(date +"%Y_%m_%d_%H%M%S");
+  backup_branch=${last_branch}_${now}
 
-  git fetch origin && git fetch origin --tags &&
-  git reset --hard $last_branch && exit_success || exit_failure;
+  git checkout -b $backup_branch;
+  print_info "Backup to branch: $backup_branch";
+
+  git branch -D $last_branch &&
+  git fetch origin $reset_branch:$reset_branch -f &&
+  git checkout $reset_branch && exit_success || exit_failure;
+
+  # git fetch origin && git fetch origin --tags &&
+  # git reset --hard $reset_branch && exit_success || exit_failure;
 }
 
 git_cm(){
