@@ -22,10 +22,9 @@ autoload -Uz compinit && compinit -i
 
 
 eval $(thefuck --alias)
-# eval "$(direnv hook zsh)"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
 
 # gem env home
 # should be /home/nguyenthanhluan/.rbenv/versions/2.4.2/lib/ruby/gems/2.4.0
