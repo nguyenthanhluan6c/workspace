@@ -38,3 +38,33 @@ sudo systemctl disable mongod.service
 sudo systemctl disable docker.service
 
 sudo teamviewer daemon disable
+
+mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME farmnavidb_production < prefectures.sql
+
+mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME farmnavidb_production < cities.sql
+
+https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format
+
+SELECT id, prefecture_code, name, name_roma, region_id
+FROM prefectures
+INTO OUTFILE '/var/lib/mysql-files/prefectures.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+SELECT cities.id, cities.city_code, cities.prefecture_code, cities.code_type, cities.name, cities.name_roma, prefectures.id as prefecture_id
+FROM cities
+INNER JOIN prefectures ON prefectures.prefecture_code = cities.prefecture_code
+INTO OUTFILE '/var/lib/mysql-files/cities.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\n';
+
+
+sudo cp /var/lib/mysql-files/prefectures.csv ~/ruby/agri-dump/
+sudo cp /var/lib/mysql-files/cities.csv ~/ruby/agri-dump/
+
+ssh -i ~/.ssh/agrimedia_test_server_deploy.pem deploy@54.64.184.90
+ssh -i ~/.ssh/agrimedia_develop centos@52.194.14.79
+
+ActionMailer::Base.mail(from: "test@example.com",  to: "n-luan@ruby-dev.jp",  subject: "Test", body: "Test").deliver_now
