@@ -6,7 +6,8 @@ all_projects["fl_hello"]="~/ruby/flutter/hello_world"
 all_projects["ticket"]="~/ruby/xflag-ticket/"
 all_projects["tdse"]="~/ruby/social-media-data-display-tool-for-beauty/"
 all_projects["dd"]="~/ruby/CR_RegulationCheck/"
-all_projects["pon"]="~/ruby/ponbot/"
+all_projects["pon"]="~/ruby/ponbot-rails/"
+all_projects["ponbot"]="~/ruby/PON_bot/"
 all_projects["bff"]="~/ruby/easi-ui/"
 all_projects["spice"]="~/ruby/spicebox-inc/"
 all_projects["mon"]="~/ruby/monpass/"
@@ -16,6 +17,8 @@ all_projects["ag"]="~/ruby/agri-navi-rails/"
 all_projects["gaku"]="~/ruby/mynavi-cms-develop/"
 all_projects["mf"]="~/ruby/vagrant-for-mille-feuille/mille-feuille/"
 all_projects["iot"]="~/ruby/iot/development_env/"
+all_projects["ja"]="~/ruby/video_management_system/"
+all_projects["web_vn"]="~/ruby/webpage-vn/"
 
 cd_to () {
   project_dir=$all_projects["$1"]
