@@ -1,14 +1,16 @@
 # Add to ~/.zshrc
 
 # export PATH="$PATH:$HOME/.rvm/bin"
-# export PATH=$PATH:~/bin
-# source ~/bin/profile.zsh
+# export PATH=$PATH:~/my_bin
+# source ~/my_bin/profile.zsh
 
-source ~/bin/.env
-source ~/bin/utils.zsh
-source ~/bin/cd_to.zsh
-source ~/bin/git_alias.zsh
-source ~/bin/mysql.zsh
+source ~/my_bin/.env
+source ~/my_bin/utils.zsh
+source ~/my_bin/cd_to.zsh
+source ~/my_bin/git_alias.zsh
+source ~/my_bin/ponbot/ponbot_deploy.zsh
+source ~/my_bin/mf/script.zsh
+source ~/my_bin/mysql.zsh
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 # Fixing-npm-permissions
@@ -24,6 +26,8 @@ autoload -Uz compinit && compinit -i
 eval $(thefuck --alias)
 
 export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=~/.local/bin:$PATH
+
 # eval "$(rbenv init -)"
 
 # gem env home

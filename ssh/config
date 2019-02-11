@@ -24,3 +24,14 @@ Host github.com-tuanh
   HostName github.com
   User git
   IdentityFile ~/.ssh/id_rsa_tuanh
+
+Host gitlab.com-n_luan
+  HostName gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_rsa_n_luan
+
+Host 192.168.0.146
+  HostName 192.168.0.146
+  User support
+  IdentityFile ~/.ssh/support_id_rsa
+  Port 22

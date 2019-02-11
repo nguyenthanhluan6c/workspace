@@ -1,81 +1,36 @@
-cd_to () {
-  case $1 in
-    "workspace")
-      cd ~/bin/
-      exec zsh
-      ;;
-    "shi")
-      cd ~/ruby/shigoto/
-      exec zsh
-      ;;
+typeset -A hash all_projects
 
-    "fl_hello")
-      cd ~/ruby/flutter/hello_world
-      exec zsh
-      ;;
-    "ticket")
-      cd ~/ruby/xflag-ticket/
-      exec zsh
-      ;;
-    "tdse")
-      cd ~/ruby/social-media-data-display-tool-for-beauty/
-      exec zsh
-      ;;
-    "dd")
-      cd ~/ruby/CR_RegulationCheck/
-      exec zsh
-      ;;
-    "spice")
-      cd ~/ruby/spicebox-inc/
-      exec zsh
-      ;;
-    "mon")
-      cd ~/ruby/monpass/
-  	  exec zsh
-      ;;
-    "tiny")
-      cd ~/ruby/my-tinycards/
-      exec zsh
-      ;;
-    "tiny_front")
-      cd ~/ruby/my-tinycards/angular2/
-      exec zsh
-      ;;
-    "ag")
-      cd ~/ruby/agri-navi-rails/
-      exec zsh
-      ;;
-    "gaku")
-      cd ~/ruby/mynavi-cms-develop/
-      exec zsh
-      ;;
-    *)
-      echo "Not found project, please add in bin/cd_to"
-      ;;
-  esac
+all_projects["workspace"]="~/my_bin/"
+all_projects["shi"]="~/ruby/shigoto/"
+all_projects["fl_hello"]="~/ruby/flutter/hello_world"
+all_projects["ticket"]="~/ruby/xflag-ticket/"
+all_projects["tdse"]="~/ruby/social-media-data-display-tool-for-beauty/"
+all_projects["dd"]="~/ruby/CR_RegulationCheck/"
+all_projects["pon"]="~/ruby/ponbot/"
+all_projects["bff"]="~/ruby/easi-ui/"
+all_projects["spice"]="~/ruby/spicebox-inc/"
+all_projects["mon"]="~/ruby/monpass/"
+all_projects["tiny"]="~/ruby/my-tinycards/"
+all_projects["tiny_front"]="~/ruby/my-tinycards/angular2/"
+all_projects["ag"]="~/ruby/agri-navi-rails/"
+all_projects["gaku"]="~/ruby/mynavi-cms-develop/"
+all_projects["mf"]="~/ruby/vagrant-for-mille-feuille/mille-feuille/"
+all_projects["iot"]="~/ruby/iot/development_env/"
+
+cd_to () {
+  project_dir=$all_projects["$1"]
+  if test $project_dir
+    then
+      eval $project_dir
+    else
+      echo "Not found project, please add in my_bin/cd_to"
+  fi;
+  exec zsh
 }
 
 projects() {
   echo "List all projects"
-  readonly projects=(
-    'workspace|~/bin/'
-    'shi|/ruby/shigoto/'
-    'fl_hello|/ruby/flutter/hello_world/'
-    'tdse|~/ruby/social-media-data-display-tool-for-beauty/'
-    'ticket|~/ruby/xflag-ticket/'
-    'dd|~/ruby/CR_RegulationCheck/'
-    'spice|~/ruby/spicebox-inc/'
-    'mon|~/ruby/monpass/'
-    'tiny|~/ruby/my-tinycards/'
-    'tiny_front|~/ruby/my-tinycards/angular2/'
-    'ag|~/ruby/agri-navi-rails/'
-    'gaku|~/ruby/mynavi-cms-develop/'
-    )
-
-  local project path
-  for fields in ${projects[@]}
-  do
-    IFS=$'|' read -r project path <<< "$fields"
-    echo_help "cd_to $project" "OR cd $path"
+  for key val in ${(kv)all_projects}; do
+    echo_help "cd_to $key" "OR cd $val"
   done
 }
