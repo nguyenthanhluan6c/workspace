@@ -39,9 +39,15 @@ sudo systemctl disable docker.service
 
 sudo teamviewer daemon disable
 
+mysqldump -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME farmnavidb_production > farmnavidb_production.sql
+
 mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME farmnavidb_production < prefectures.sql
 
 mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME farmnavidb_production < cities.sql
+
+mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME millefeuille_development < millefeuille_development.sql
+mysql -u$DATABASE_USERNAME -p$DATABASE_PASSWORD -h$DATABASE_HOSTNAME millefeuille_test < millefeuille_test.sql
+
 
 https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format
 

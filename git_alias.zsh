@@ -35,6 +35,10 @@ git_fetch(){
   # git fetch origin && git fetch origin --tags &&
   # git reset --hard $reset_branch && exit_success || exit_failure;
 }
+git_fetch_pull(){
+  pull_id=$1;
+  git fetch origin pull/$pull_id/head:$pull_id && git checkout $pull_id
+}
 
 git_cm(){
   local repo_url repo_name repo_host browser_url last_commit commit_message
@@ -48,7 +52,7 @@ git_cm(){
     print_error "CARE FULL, YOU ARE COMMITTING ON BRANCH $current_branch_name"
   fi
 
-  rubocop -a
+  # bundle rubocop -a
 
   git status
   git add -A
@@ -56,7 +60,7 @@ git_cm(){
   last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
   print_info $last_commit
 
-  if [[ $last_commit -regex-match "(.+)Merge pull request(.+)" ]]; then
+  if [[ $last_commit -regex-match "(.+)Merge (.+)" ]]; then
     echo $match
     local tmp_message
 
@@ -93,7 +97,7 @@ git_push(){
     return 1
   fi
 
-  rubocop -a
+  # bundle rubocop -a
 
   git status
   git add -A
@@ -101,7 +105,7 @@ git_push(){
   last_commit=$(git --no-pager log --decorate=short --pretty=oneline -n1)
   print_info $last_commit
 
-  if [[ $last_commit -regex-match "(.+)Merge pull request(.+)" ]]; then
+  if [[ $last_commit -regex-match "(.+)Merge (.+)" ]]; then
     echo $match
     local tmp_message
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #RUN:
-#bash ~/bin/install_docker.sh
+#bash ~/my_bin/install_docker.sh
 
 sudo apt-get update
 sudo apt-get install \

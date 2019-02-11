@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #RUN:
-#bash ~/bin/install_docker_compose.sh
+#bash ~/my_bin/install_docker_compose.sh
 
 sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 
