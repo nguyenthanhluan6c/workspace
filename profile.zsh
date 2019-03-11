@@ -10,6 +10,7 @@ source ~/my_bin/cd_to.zsh
 source ~/my_bin/git_alias.zsh
 source ~/my_bin/ponbot/ponbot_deploy.zsh
 source ~/my_bin/mf/script.zsh
+source ~/my_bin/iot/script.zsh
 source ~/my_bin/mysql.zsh
 
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
