@@ -20,11 +20,6 @@ Host github.com-nguyenthanhluan6c
   User git
   IdentityFile ~/.ssh/id_rsa_nguyenthanhluan6c
 
-Host github.com-tuanh
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_rsa_tuanh
-
 Host gitlab.com-n_luan
   HostName gitlab.com
   User git
