@@ -106,6 +106,6 @@ autoload -Uz compinit && compinit -i
 
 export PATH="$PATH:$HOME/usr/share/elasticsearch/bin"
 
-source ~/bin/profile.zsh
+source ~/workspace/profile.zsh
 # source /home/ubuntu/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
